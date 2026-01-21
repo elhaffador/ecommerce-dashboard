@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 from babel.numbers import format_currency
+import os
 
 sns.set(style='dark')
 
@@ -40,7 +41,9 @@ def create_rfm_df(df):
     return rfm_df
 
 # --- 2. LOAD DATA ---
-all_df = pd.read_csv("main_data.csv")
+script_dir = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(script_dir, "main_data.csv")
+all_df = pd.read_csv(csv_path)
 
 datetime_columns = ["order_purchase_timestamp", "order_estimated_delivery_date"]
 for column in datetime_columns:
